@@ -1,0 +1,34 @@
+/*
+
+js6personstasks: id | personid | taskid
+
+
+*/
+
+db.get('js6personstasks/9').then((record) => {
+  /*
+    {
+      id: 9,
+      personid: 13,
+      taskid: 5
+    }
+  */
+ Promise.all([
+   db.get('js6tasks/' + record.taskid),
+   db.get('js6persons/' + record.personid)
+ ]).then(() => {
+  // .....
+ })
+
+}
+
+
+  // 'SELECT id, personid, taskid, persons.first, persons.last, persons.positionid, positions.position,
+  // tasks.task, tasks.priority, tasks.date, tasks. completed, projects.project'
+  // FROM js6personstasks'
+  // JOIN persons ON js6.personstasks.personid = persons.id
+  // JOIN positions ON positions.id = persons.positionid
+  // JOIN tasks ON js6personstasks.taskid = tasks.id
+  // JOIN projects ON tasks.projectid = projects.id
+
+  // id, task, completed, date, priotiry, projectid, projects.project
